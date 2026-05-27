@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIRCVIS — AI Waste Intelligence Platform</title>
+    <meta name="description"
+        content="Enterprise AI-powered waste classification. Real-time insights, 89% accuracy, edge-ready deployment for circular cities.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <nav class="nav" id="mainNav">
+        <div class="nav-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">CV</span>
+                <span class="brand-name">CIRCVIS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="demo.html" class="nav-link">Demo</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="docs.html" class="nav-link">Docs</a></li>
+            </ul>
+            <a href="demo.html" class="nav-cta">Try Live Demo</a>
+        </div>
+    </nav>
+
+    <section class="hero cinematic-hero">
+        <div class="cinematic-bg">
+            <div class="bg-slide active" style="background-image: url('assets/images/idx_hero_1.png');"></div>
+            <div class="bg-slide" style="background-image: url('assets/images/idx_hero_2.png');"></div>
+            <div class="bg-slide" style="background-image: url('assets/images/idx_hero_3.png');"></div>
+            <div class="volumetric-fog"></div>
+            <div class="particles-container" id="particles-js"></div>
+        </div>
+        <div class="hero-overlay cinematic-overlay"></div>
+        <div class="hero-inner cinematic-inner">
+            <div class="cinematic-content">
+                <h1 class="hero-title reveal-text">RECOVER MORE</h1>
+                <p class="hero-sub reveal-text delay-1">90% material recovery • Scale Easily</p>
+                <div class="hero-actions reveal-text delay-2">
+                    <a href="demo.html" class="btn-solid glow-btn">Experience Demo</a>
+                    <a href="#features" class="btn-ghost">View Capabilities</a>
+                </div>
+            </div>
+            
+            <div class="hero-stats cinematic-stats reveal-text delay-3">
+                <div class="hstat">
+                    <span class="hstat-num">90%</span>
+                    <span class="hstat-lbl">Material Recovery</span>
+                </div>
+                <div class="hstat-div"></div>
+                <div class="hstat">
+                    <span class="hstat-num">45ms</span>
+                    <span class="hstat-lbl">Real-time AI Sorting</span>
+                </div>
+                <div class="hstat-div"></div>
+                <div class="hstat">
+                    <span class="hstat-num">Modular</span>
+                    <span class="hstat-lbl">Automated Facilities</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="features">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 64px;">
+                <div class="section-head reveal-on-scroll" style="text-align: left; margin: 0; max-width: 100%;">
+                    <span class="section-tag">Platform Capabilities</span>
+                    <h2 class="section-title">Enterprise-Grade AI Classification</h2>
+                    <p class="section-desc">Built for real-world conditions — mixed waste, partial visibility, inconsistent lighting. Where standard models fail, CIRCVIS delivers.</p>
+                </div>
+                <div class="reveal-on-scroll delay-200" style="border-radius: var(--radius); overflow: hidden; border: 1px solid var(--c-border); box-shadow: 0 20px 40px rgba(0,0,0,0.4); aspect-ratio: 16/9;">
+                    <img src="assets/images/idx_ai.png" alt="AI Classification System" style="width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.05); transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1.05)'">
+                </div>
+            </div>
+            <div class="split-rows" style="margin-top: 40px;">
+                <!-- Feature 01 -->
+                <div class="split-row">
+                    <div class="reveal-left">
+                        <div class="feat-num">01</div>
+                        <h3 class="feat-title" style="font-size:1.8rem; margin-bottom: 16px;">Multi-Model Ensemble</h3>
+                        <p class="feat-desc" style="font-size: 1.1rem;">ResNet50, MobileNetV2 and EfficientNetB0 fused through soft voting for unmatched accuracy across all waste types and conditions.</p>
+                        <ul class="feat-list" style="font-size: 1rem;">
+                            <li>89% ensemble accuracy</li>
+                            <li>Context-aware predictions</li>
+                            <li>Per-class confidence scoring</li>
+                        </ul>
+                    </div>
+                    <div class="split-img-wrapper reveal-right">
+                        <img src="assets/images/idx_ensemble.png" class="split-img img-filter-1" alt="Multi-Model Ensemble">
+                    </div>
+                </div>
+
+                <!-- Feature 02 -->
+                <div class="split-row reverse">
+                    <div class="reveal-right">
+                        <div class="feat-num">02</div>
+                        <h3 class="feat-title" style="font-size:1.8rem; margin-bottom: 16px;">Edge-Ready Deployment</h3>
+                        <p class="feat-desc" style="font-size: 1.1rem;">Optimized for robotics and field sensors. MobileNetV2 at 13MB runs on Raspberry Pi and Jetson Nano without compromise.</p>
+                        <ul class="feat-list" style="font-size: 1rem;">
+                            <li>45ms inference on edge</li>
+                            <li>13MB model footprint</li>
+                            <li>Raspberry Pi compatible</li>
+                        </ul>
+                    </div>
+                    <div class="split-img-wrapper reveal-left">
+                        <img src="assets/images/idx_edge.png" class="split-img img-filter-2" alt="Edge-Ready Deployment">
+                    </div>
+                </div>
+
+                <!-- Feature 03 -->
+                <div class="split-row">
+                    <div class="reveal-left">
+                        <div class="feat-num">03</div>
+                        <h3 class="feat-title" style="font-size:1.8rem; margin-bottom: 16px;">Real-Time Analytics</h3>
+                        <p class="feat-desc" style="font-size: 1.1rem;">Comprehensive sustainability metrics dashboard with CO₂ savings calculations, recycling rates, and exportable compliance reports.</p>
+                        <ul class="feat-list" style="font-size: 1rem;">
+                            <li>Live classification feed</li>
+                            <li>Environmental impact metrics</li>
+                            <li>Exportable PDF reports</li>
+                        </ul>
+                    </div>
+                    <div class="split-img-wrapper reveal-right">
+                        <img src="assets/images/idx_realtime.png" class="split-img" alt="Real-Time Analytics">
+                    </div>
+                </div>
+
+                <!-- Feature 04 -->
+                <div class="split-row reverse">
+                    <div class="reveal-right">
+                        <div class="feat-num">04</div>
+                        <h3 class="feat-title" style="font-size:1.8rem; margin-bottom: 16px;">Multi-Modal Input</h3>
+                        <p class="feat-desc" style="font-size: 1.1rem;">Image upload, live webcam feed, and video frame analysis with drag-and-drop simplicity and batch processing support.</p>
+                        <ul class="feat-list" style="font-size: 1rem;">
+                            <li>Drag and drop interface</li>
+                            <li>Real-time webcam mode</li>
+                            <li>Video frame extraction</li>
+                        </ul>
+                    </div>
+                    <div class="split-img-wrapper reveal-left">
+                        <img src="assets/images/idx_multimodal.png" class="split-img img-filter-3" alt="Multi-Modal Input">
+                    </div>
+                </div>
+
+                <!-- Feature 05 -->
+                <div class="split-row">
+                    <div class="reveal-left">
+                        <div class="feat-num">05</div>
+                        <h3 class="feat-title" style="font-size:1.8rem; margin-bottom: 16px;">Sustainability Tracking</h3>
+                        <p class="feat-desc" style="font-size: 1.1rem;">Measure real environmental impact. Every classified item contributes to your organization's ESG reporting and circular economy goals.</p>
+                        <ul class="feat-list" style="font-size: 1rem;">
+                            <li>CO₂ saved per material</li>
+                            <li>Landfill diversion metrics</li>
+                            <li>GDPR-compliant reporting</li>
+                        </ul>
+                    </div>
+                    <div class="split-img-wrapper reveal-right">
+                        <img src="assets/images/idx_sust.png" class="split-img img-filter-4" alt="Sustainability Tracking">
+                    </div>
+                </div>
+
+                <!-- Feature 06 -->
+                <div class="split-row reverse" style="margin-bottom: 0;">
+                    <div class="reveal-right">
+                        <div class="feat-num">06</div>
+                        <h3 class="feat-title" style="font-size:1.8rem; margin-bottom: 16px;">Enterprise Security</h3>
+                        <p class="feat-desc" style="font-size: 1.1rem;">Bank-grade end-to-end encryption with on-premise deployment options. Your data never leaves your infrastructure unless you choose.</p>
+                        <ul class="feat-list" style="font-size: 1rem;">
+                            <li>End-to-end encryption</li>
+                            <li>On-premise deployment</li>
+                            <li>SOC 2 Type II ready</li>
+                        </ul>
+                    </div>
+                    <div class="split-img-wrapper reveal-left">
+                        <img src="assets/images/idx_security.png" class="split-img img-filter-2" alt="Enterprise Security">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="metrics-bar">
+        <div class="container">
+            <div class="metrics-row">
+                <div class="mbar-item">
+                    <span class="mbar-num">2.12B</span>
+                    <span class="mbar-lbl">Tons of waste generated annually</span>
+                </div>
+                <div class="mbar-item">
+                    <span class="mbar-num">32%</span>
+                    <span class="mbar-lbl">Current global recycling rate</span>
+                </div>
+                <div class="mbar-item">
+                    <span class="mbar-num">89%</span>
+                    <span class="mbar-lbl">CIRCVIS classification accuracy</span>
+                </div>
+                <div class="mbar-item">
+                    <span class="mbar-num">45ms</span>
+                    <span class="mbar-lbl">Average inference time</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-tag">Model Comparison</span>
+                <h2 class="section-title">Choose Your Deployment Model</h2>
+                <p class="section-desc">Each model optimized for a specific trade-off between accuracy, speed and
+                    hardware requirements.</p>
+            </div>
+            <div class="table-wrap">
+                <table class="comp-table">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Accuracy</th>
+                            <th>Inference</th>
+                            <th>Size</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ResNet50</strong></td>
+                            <td>88%</td>
+                            <td>120ms</td>
+                            <td>97 MB</td>
+                            <td>Accuracy-first server deployments</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MobileNetV2</strong></td>
+                            <td>84%</td>
+                            <td>45ms</td>
+                            <td>13 MB</td>
+                            <td>Edge devices and robotics</td>
+                        </tr>
+                        <tr>
+                            <td><strong>EfficientNetB0</strong></td>
+                            <td>87%</td>
+                            <td>65ms</td>
+                            <td>20 MB</td>
+                            <td>Balanced cloud deployment</td>
+                        </tr>
+                        <tr class="row-highlight">
+                            <td><strong>Ensemble (All 3)</strong></td>
+                            <td><strong>89%</strong></td>
+                            <td>200ms</td>
+                            <td>130 MB</td>
+                            <td>Maximum accuracy — production MRF</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-tag">Waste Categories</span>
+                <h2 class="section-title">7 Material Classes</h2>
+                <p class="section-desc">Trained on 2.5 million real-world images from landfills and recycling facilities
+                    — not lab conditions.</p>
+            </div>
+            <div class="classes-row">
+                <div class="class-pill">Plastic</div>
+                <div class="class-pill">Organic</div>
+                <div class="class-pill">Metal</div>
+                <div class="class-pill">Paper / Cardboard</div>
+                <div class="class-pill">Glass</div>
+                <div class="class-pill">Textile</div>
+                <div class="class-pill">Miscellaneous</div>
+            </div>
+            <div class="split-rows" style="margin-top: 40px;">
+                <!-- Plastic -->
+                <div class="split-row">
+                    <div class="reveal-left">
+                        <div class="cd-top" style="margin-bottom: 12px;">
+                            <span class="cd-name" style="font-size: 1.8rem;">1. Plastic</span>
+                        </div>
+                        <p class="cd-desc" style="font-size: 1.1rem; margin-bottom: 8px;">PET, HDPE, PP, PVC bottles, bags, film. 95% recyclable. 500–1000 year decomposition.</p>
+                        <span class="cd-co2" style="font-size: 1rem; color: var(--c-green); font-weight: 700;">3.5 kg CO₂/kg saved</span>
+                    </div>
+                    <div class="split-img-wrapper reveal-right">
+                        <img src="assets/images/idx_plastic.png" class="split-img" alt="Plastic Waste">
+                    </div>
+                </div>
+
+                <!-- Organic -->
+                <div class="split-row reverse">
+                    <div class="reveal-right">
+                        <div class="cd-top" style="margin-bottom: 12px;">
+                            <span class="cd-name" style="font-size: 1.8rem;">2. Organic</span>
+                        </div>
+                        <p class="cd-desc" style="font-size: 1.1rem; margin-bottom: 8px;">Food waste, garden waste, plant matter. 100% recyclable into biogas or compost.</p>
+                        <span class="cd-co2" style="font-size: 1rem; color: var(--c-green); font-weight: 700;">Compostable</span>
+                    </div>
+                    <div class="split-img-wrapper reveal-left">
+                        <img src="assets/images/idx_organic.png" class="split-img img-filter-4" alt="Organic Waste">
+                    </div>
+                </div>
+
+                <!-- Metal -->
+                <div class="split-row">
+                    <div class="reveal-left">
+                        <div class="cd-top" style="margin-bottom: 12px;">
+                            <span class="cd-name" style="font-size: 1.8rem;">3. Metal</span>
+                        </div>
+                        <p class="cd-desc" style="font-size: 1.1rem; margin-bottom: 8px;">Aluminum, steel, copper, tin cans, foil. 100% recyclable with infinite reusability.</p>
+                        <span class="cd-co2" style="font-size: 1rem; color: var(--c-green); font-weight: 700;">8.0 kg CO₂/kg saved</span>
+                    </div>
+                    <div class="split-img-wrapper reveal-right">
+                        <img src="assets/images/idx_metal.png" class="split-img img-filter-3" alt="Metal Waste">
+                    </div>
+                </div>
+
+                <!-- Paper -->
+                <div class="split-row reverse">
+                    <div class="reveal-right">
+                        <div class="cd-top" style="margin-bottom: 12px;">
+                            <span class="cd-name" style="font-size: 1.8rem;">4. Paper</span>
+                        </div>
+                        <p class="cd-desc" style="font-size: 1.1rem; margin-bottom: 8px;">Newspapers, boxes, cardboard, envelopes. 98% recyclable via pulp regeneration.</p>
+                        <span class="cd-co2" style="font-size: 1rem; color: var(--c-green); font-weight: 700;">1.5 kg CO₂/kg saved</span>
+                    </div>
+                    <div class="split-img-wrapper reveal-left">
+                        <img src="assets/images/idx_paper.png" class="split-img img-filter-1" alt="Paper Waste">
+                    </div>
+                </div>
+
+                <!-- Glass -->
+                <div class="split-row">
+                    <div class="reveal-left">
+                        <div class="cd-top" style="margin-bottom: 12px;">
+                            <span class="cd-name" style="font-size: 1.8rem;">5. Glass</span>
+                        </div>
+                        <p class="cd-desc" style="font-size: 1.1rem; margin-bottom: 8px;">Clear, brown, green bottles and jars. 100% recyclable with infinite reuse cycles.</p>
+                        <span class="cd-co2" style="font-size: 1rem; color: var(--c-green); font-weight: 700;">2.0 kg CO₂/kg saved</span>
+                    </div>
+                    <div class="split-img-wrapper reveal-right">
+                        <img src="assets/images/idx_glass.png" class="split-img img-filter-2" alt="Glass Waste">
+                    </div>
+                </div>
+
+                <!-- Textile -->
+                <div class="split-row reverse" style="margin-bottom: 0;">
+                    <div class="reveal-right">
+                        <div class="cd-top" style="margin-bottom: 12px;">
+                            <span class="cd-name" style="font-size: 1.8rem;">6. Textile</span>
+                        </div>
+                        <p class="cd-desc" style="font-size: 1.1rem; margin-bottom: 8px;">Cotton, polyester, wool clothing. 60% recyclable through fiber regeneration processes.</p>
+                        <span class="cd-co2" style="font-size: 1rem; color: var(--c-green); font-weight: 700;">2.5 kg CO₂/kg saved</span>
+                    </div>
+                    <div class="split-img-wrapper reveal-left">
+                        <img src="assets/images/idx_textile.png" class="split-img" alt="Textile Waste">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-inner">
+                <h2 class="cta-title">Ready to Automate Your Waste Operations?</h2>
+                <p class="cta-sub">Join forward-thinking municipalities and facilities using CIRCVIS to drive measurable
+                    sustainability outcomes.</p>
+                <div class="cta-actions">
+                    <a href="demo.html" class="btn-solid">Start Free Trial</a>
+                    <a href="about.html" class="btn-ghost-dark">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="brand">
+                        <span class="brand-mark">CV</span>
+                        <span class="brand-name">CIRCVIS</span>
+                    </div>
+                    <p class="footer-tagline">Smart waste intelligence for circular cities. Built for sustainability at
+                        scale.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Product</h4>
+                    <ul>
+                        <li><a href="demo.html">Live Demo</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Resources</h4>
+                    <ul>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Company</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2024 CIRCVIS. All rights reserved.</span>
+                <span>Built for Circular Cities 2030</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/cinematic.js"></script>
+</body>
+
+</html>

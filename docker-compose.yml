@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  circvis-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: circvis-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+      - ./frontend:/app/frontend
+    environment:
+      - PYTHONUNBUFFERED=1
+      - TF_CPP_MIN_LOG_LEVEL=2
+    command: python -m uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - circvis-network
+
+  circvis-frontend-dev:
+    image: node:20-alpine
+    container_name: circvis-frontend
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"
+    command: npx live-server --port=3000 --root=/app
+    networks:
+      - circvis-network
+    depends_on:
+      - circvis-backend
+
+networks:
+  circvis-network:
+    driver: bridge
+
+volumes:
+  models:
+  data:

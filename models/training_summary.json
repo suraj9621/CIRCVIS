@@ -1,0 +1,26 @@
+{
+  "accuracies": {
+    "efficientnetb0": 0.5264084339141846,
+    "resnet50": 0.5000880122184753,
+    "mobilenetv2": 0.5158802652359009
+  },
+  "ensemble_weights": {
+    "efficientnetb0": 0.341296928327645,
+    "resnet50": 0.32423208191126274,
+    "mobilenetv2": 0.33447098976109213
+  },
+  "class_names": [
+    "Plastic",
+    "Organic",
+    "Metal",
+    "Paper/Cardboard",
+    "Glass",
+    "Textile",
+    "Miscellaneous"
+  ],
+  "training_config": {
+    "epochs": 15,
+    "batch_size": 32,
+    "learning_rate": 0.0001
+  }
+}

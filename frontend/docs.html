@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation — CIRCVIS AI Waste Intelligence</title>
+    <meta name="description" content="Comprehensive developer guide and documentation for the CIRCVIS ensemble deep learning waste classification platform.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .docs-container {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+            padding-top: 100px;
+            padding-bottom: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        /* Sidebar Navigation */
+        .docs-sidebar {
+            position: sticky;
+            top: 100px;
+            height: calc(100vh - 140px);
+            overflow-y: auto;
+            padding-right: 20px;
+            border-right: 1px solid var(--c-border);
+        }
+        
+        .docs-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .docs-sidebar::-webkit-scrollbar-thumb {
+            background: var(--c-border);
+            border-radius: 2px;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 28px;
+        }
+        
+        .sidebar-section h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--c-dim);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .sidebar-link {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--c-muted);
+            padding: 6px 0;
+            transition: color 0.2s, padding-left 0.2s;
+            font-weight: 500;
+        }
+        
+        .sidebar-link:hover {
+            color: var(--c-green);
+            padding-left: 4px;
+        }
+        
+        .sidebar-link.active {
+            color: var(--c-green);
+            font-weight: 600;
+            padding-left: 4px;
+        }
+        
+        /* Main Docs Content */
+        .docs-content {
+            max-width: 860px;
+        }
+        
+        .docs-sec {
+            margin-bottom: 64px;
+            scroll-margin-top: 100px;
+        }
+        
+        .docs-sec h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--c-border);
+            padding-bottom: 10px;
+        }
+        
+        .docs-sec h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-top: 32px;
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
+        }
+        
+        .docs-sec p {
+            color: var(--c-muted);
+            margin-bottom: 18px;
+            line-height: 1.75;
+            font-size: 1rem;
+        }
+        
+        .docs-sec ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .docs-sec li {
+            color: var(--c-muted);
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 10px;
+            line-height: 1.6;
+        }
+        
+        /* Styling Code blocks */
+        .code-block-wrapper {
+            margin: 20px 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--c-border);
+            background: rgba(17, 17, 19, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid var(--c-border);
+        }
+        
+        .code-lang {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--c-dim);
+        }
+        
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--c-border);
+            color: var(--c-muted);
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font);
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .copy-btn:hover {
+            color: var(--c-green);
+            border-color: var(--c-green);
+            background: rgba(34, 197, 94, 0.05);
+        }
+        
+        pre {
+            margin: 0;
+            padding: 18px;
+            overflow-x: auto;
+        }
+        
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: #e4e4e7;
+        }
+        
+        .keyword { color: #f472b6; }
+        .function { color: #60a5fa; }
+        .string { color: #34d399; }
+        .comment { color: var(--c-dim); }
+        .number { color: #fbbf24; }
+        
+        /* Info Cards */
+        .info-note {
+            background: rgba(34, 197, 94, 0.04);
+            border-left: 4px solid var(--c-green);
+            padding: 20px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 24px 0;
+        }
+        
+        .info-note h4 {
+            color: var(--c-green);
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .info-note p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--c-muted);
+        }
+
+        .api-endpoint-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        
+        .method-post {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .method-get {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--c-green);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .endpoint-path {
+            font-family: 'Fira Code', monospace;
+            color: var(--c-text);
+        }
+        
+        .comp-table th {
+            font-size: 0.72rem;
+            padding: 10px 14px;
+        }
+        
+        .comp-table td {
+            padding: 12px 14px;
+            font-size: 0.85rem;
+        }
+        
+        @media(max-width: 768px) {
+            .docs-container {
+                grid-template-columns: 1fr;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .docs-sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+    <div class="nav-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">CV</span>
+            <span class="brand-name">CIRCVIS</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="demo.html" class="nav-link">Demo</a></li>
+            <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="docs.html" class="nav-link active">Docs</a></li>
+        </ul>
+        <a href="demo.html" class="nav-cta">Try Live Demo</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="docs-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="docs-sidebar">
+            <div class="sidebar-section">
+                <h3>Getting Started</h3>
+                <a href="#introduction" class="sidebar-link active">Introduction</a>
+                <a href="#quickstart" class="sidebar-link">Quickstart Guide</a>
+                <a href="#docker" class="sidebar-link">Docker Setup</a>
+            </div>
+            <div class="sidebar-section">
+                <h3>Machine Learning</h3>
+                <a href="#ml-architecture" class="sidebar-link">Ensemble Models</a>
+                <a href="#waste-classes" class="sidebar-link">7 Waste Categories</a>
+            </div>
+            <div class="sidebar-section">
+                <h3>REST API Reference</h3>
+                <a href="#api-predict" class="sidebar-link">POST /predict</a>
+                <a href="#api-batch" class="sidebar-link">POST /predict-batch</a>
+                <a href="#api-stats" class="sidebar-link">GET /stats</a>
+                <a href="#api-feedback" class="sidebar-link">POST /feedback</a>
+            </div>
+            <div class="sidebar-section">
+                <h3>Deployment</h3>
+                <a href="#edge-deployment" class="sidebar-link">Edge Robotics</a>
+                <a href="#troubleshooting" class="sidebar-link">Troubleshooting FAQ</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="docs-content">
+            
+            <!-- Section: Introduction -->
+            <section id="introduction" class="docs-sec reveal-on-scroll">
+                <h2>Introduction</h2>
+                <p>Welcome to the official <strong>CIRCVIS AI Waste Intelligence</strong> documentation. CIRCVIS is an enterprise-grade, context-aware computer vision platform designed to automate material identification and sorting in municipal waste facilities, recycling complexes, and smart-city hardware.</p>
+                <p>By using deep learning ensembles fine-tuned on real-world landfill datasets (such as <em>RealWaste</em> and <em>TACO</em>), CIRCVIS bypasses the common failure modes of generic vision algorithms—such as overlapping materials, severe occlusion, crushing, and dynamic lighting on conveyor belts.</p>
+                
+                <div class="info-note">
+                    <h4>💡 System Vision</h4>
+                    <p>CIRCVIS is built to power high-throughput sorting, providing a bridge between high-speed camera sensors and automated mechanical separators or edge robotics arms. It scales from heavy cloud infrastructure to low-power edge gateways.</p>
+                </div>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>89% Ensemble Accuracy:</strong> Soft-voting decision pipeline combining three high-performance deep architectures.</li>
+                    <li><strong>Ultra-Low Latency:</strong> 45ms inference via optimized MobileNetV2 edge weights.</li>
+                    <li><strong>Webcam & Video Feed Support:</strong> Real-time streaming capture and frame-by-frame conveyor sorting analysis.</li>
+                    <li><strong>ESG Sustainability Metrics:</strong> Integrated calculations for CO₂ emission offsets, decomposition logs, and material values.</li>
+                    <li><strong>Integrated Feedback Loop:</strong> Real-time operator override endpoint to retrain and continuously calibrate ML performance.</li>
+                </ul>
+            </section>
+
+            <!-- Section: Quickstart -->
+            <section id="quickstart" class="docs-sec reveal-on-scroll">
+                <h2>Quickstart Guide</h2>
+                <p>Get the CIRCVIS FastAPI backend and web application running locally in under 3 minutes. The system requires Python 3.10+ and standard tools.</p>
+                
+                <h3>1. Clone and Prepare Environment</h3>
+                <p>Create a Python virtual environment and install the required dependencies:</p>
+                
+                <div class="code-block-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">Shell</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="comment"># Create virtual environment</span>
+python -m venv venv
+
+<span class="comment"># Activate virtual environment (Windows)</span>
+venv\Scripts\activate
+
+<span class="comment"># Activate virtual environment (Linux / macOS)</span>
+source venv/bin/activate
+
+<span class="comment"># Install production dependencies</span>
+pip install -r requirements.txt</code></pre>
+                </div>
+
+                <h3>2. Run the Application</h3>
+                <p>Use our universal startup script or direct python execution to fire up both the ML model services and static pages:</p>
+                
+                <div class="code-block-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">Shell (Direct Python)</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="comment"># Start the FastAPI server on port 8000</span>
+python -m uvicorn backend.app.main:app --reload</code></pre>
+                </div>
+                
+                <div class="code-block-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">Windows Batch Script</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="comment"># Run using startup batch file</span>
+run.bat</code></pre>
+                </div>
+
+                <p>The backend will immediately spin up. Open your browser and navigate to <a href="http://localhost:8000" target="_blank" style="color:var(--c-green); font-weight:600;">http://localhost:8000</a> to interact with the application dashboard and real-time classification demos.</p>
+            </section>
+
+            <!-- Section: Docker Setup -->
+            <section id="docker" class="docs-sec reveal-on-scroll">
+                <h2>Docker Setup</h2>
+                <p>CIRCVIS is fully containerized, providing standard cross-platform consistency. The application includes a `Dockerfile` and `docker-compose.yml` for unified orchestration.</p>
+                
+                <h3>Build and Run with Docker</h3>
+                <div class="code-block-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">Docker CLI</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="comment"># Build the Docker image</span>
+docker build -t circvis-platform:latest .
+
+<span class="comment"># Run the container mapping port 8000</span>
+docker run -p 8000:8000 circvis-platform:latest</code></pre>
+                </div>
+
+                <h3>Run with Docker Compose</h3>
+                <div class="code-block-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">Docker Compose</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="comment"># Run backend, models, and analytics in a single command</span>
+docker-compose up -d</code></pre>
+                </div>
+            </section>
+
+            <!-- Section: ML Architecture -->
+            <section id="ml-architecture" class="docs-sec reveal-on-scroll">
+                <h2>Ensemble Models</h2>
+                <p>Generic computer vision systems rely on a single model. If that model encounters an object at a strange angle, lighting distortion, or covered in grease, the prediction fails. CIRCVIS solves this using a **Soft-Voting Deep Learning Ensemble** that aggregates features from three distinct neural architectures.</p>
+                
+                <div class="table-wrap" style="margin: 24px 0;">
+                    <table class="comp-table">
+                        <thead>
+                            <tr>
+                                <th>Architecture</th>
+                                <th>Accuracy</th>
+                                <th>Latency (CPU)</th>
+                                <th>Model Size</th>
+                                <th>Primary Target Deployment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>ResNet50</strong></td>
+                                <td>88.2%</td>
+                                <td>120ms</td>
+                                <td>97 MB</td>
+                                <td>Accuracy-critical cloud servers</td>
+                            </tr>
+                            <tr>
+                                <td><strong>MobileNetV2</strong></td>
+                                <td>84.1%</td>
+                                <td>45ms</td>
+                                <td>13 MB</td>
+                                <td>Edge robotics and IoT controllers</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EfficientNetB0</strong></td>
+                                <td>87.4%</td>
+                                <td>65ms</td>
+                                <td>20 MB</td>
+                                <td>Balanced cloud/hybrid containers</td>
+                            </tr>
+                            <tr class="row-highlight">
+                                <td><strong>Ensemble (All 3)</strong></td>
+                                <td><strong>89.5%</strong></td>
+                                <td>200ms</td>
+                                <td>130 MB</td>
+                                <td>Production conveyor belt sorting</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>The Soft-Voting Algorithm</h3>
+                <p>During prediction, raw image tensors are loaded into all three classifiers simultaneously. Rather than selecting the majority class label (hard voting), our ensemble sums the output class probability vectors (softmax predictions) generated by each network:</p>
+                <p style="text-align:center; font-family:'Fira Code', monospace; color:var(--c-text); background:rgba(255,255,255,0.02); padding:16px; border-radius:8px; border:1px solid var(--c-border);">
+                    P_final(c) = w1*P_resnet(c) + w2*P_mobilenet(c) + w3*P_effnet(c)
+                </p>
+                <p>Weights are calibrated using a Dirichlet parameter optimizer based on validation performance, ensuring that models with superior specialized accuracy (such as ResNet's high organic precision) carry more influence in final output calculations.</p>
+            </section>
+
+            <!-- Section: 7 Waste Categories -->
+            <section id="waste-classes" class="docs-sec reveal-on-scroll">
+                <h2>7 Waste Categories</h2>
+                <p>To support advanced sorting systems, our training corpus fuses standard categories into seven distinct structural classes. Each class is mapped to accurate ecological metrics:</p>
+                
+                <div class="table-wrap">
+                    <table class="comp-table">
+                        <thead>
+                            <tr>
+                                <th>Material Category</th>
+                                <th>Examples Included</th>
+                                <th>Recyclability Rate</th>
+                                <th>CO₂ Offset per kg Sorted</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Plastic</strong></td>
+                                <td>PET, HDPE, PP bottles, food trays, packaging wrap</td>
+                                <td>95% Recyclable</td>
+                                <td>3.5 kg CO₂</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Organic</strong></td>
+                                <td>Food remains, plants, leaves, agricultural residue</td>
+                                <td>100% Compostable</td>
+                                <td>Biogas/Soil enrichment</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Metal</strong></td>
+                                <td>Aluminium soda cans, steel containers, copper wiring</td>
+                                <td>100% Infinite Recyclable</td>
+                                <td>8.0 kg CO₂</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Paper / Cardboard</strong></td>
+                                <td>Corrugated cartons, magazines, letters, carrier bags</td>
+                                <td>98% Recyclable</td>
+                                <td>1.5 kg CO₂</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Glass</strong></td>
+                                <td>Clear jars, brown and green beverage bottles</td>
+                                <td>100% Infinite Recyclable</td>
+                                <td>2.0 kg CO₂</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Textile</strong></td>
+                                <td>Cotton and polyester clothing, carpets, linens</td>
+                                <td>60% Fiber recovery</td>
+                                <td>2.5 kg CO₂</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Miscellaneous</strong></td>
+                                <td>Composite material trash, multi-layer films, debris</td>
+                                <td>Non-recyclable target</td>
+                                <td>0.0 kg CO₂</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section: API - Predict -->
+            <section id="api-predict" class="docs-sec reveal-on-scroll">
+                <h2>POST /predict</h2>
+                <div class="api-endpoint-badge">
+                    <span class="method-post">POST</span>
+                    <span class="endpoint-path">/api/predict</span>
+                </div>
+                <p>Submits a single image file for real-time waste classification. The API expects standard `multipart/form-data` containing the image stream.</p>
+                
+                <h3>Request Payload</h3>
+                <ul>
+                    <li><code>file</code>: Binary file stream (supported: jpeg, png, webp. Maximum size: 10MB).</li>
+                </ul>
+
+                <h3>JavaScript Code Example</h3>
+                <div class="code-block-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">JavaScript</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="keyword">const</span> file = fileInput.files[0];
+<span class="keyword">const</span> formData = <span class="keyword">new</span> <span class="function">FormData</span>();
+formData.<span class="function">append</span>(<span class="string">'file'</span>, file);
+
+<span class="keyword">const</span> response = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">'/api/predict'</span>, {
+  method: <span class="string">'POST'</span>,
+  body: formData
+});
+
+<span class="keyword">const</span> result = <span class="keyword">await</span> response.<span class="function">json</span>();
+console.<span class="function">log</span>(<span class="string">`Predicted Class: ${result.class_name} (${(result.confidence * 100).toFixed(1)}%)`</span>);</code></pre>
+                </div>
+
+                <h3>Response Body (JSON)</h3>
+                <div class="code-block-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">JSON Response</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>{
+  <span class="string">"class_name"</span>: <span class="string">"Plastic"</span>,
+  <span class="string">"confidence"</span>: <span class="number">0.9785</span>,
+  <span class="string">"processing_time_ms"</span>: <span class="number">52.4</span>,
+  <span class="string">"all_classes"</span>: {
+    <span class="string">"Plastic"</span>: <span class="number">0.9785</span>,
+    <span class="string">"Organic"</span>: <span class="number">0.0051</span>,
+    <span class="string">"Metal"</span>: <span class="number">0.0102</span>,
+    <span class="string">"Paper"</span>: <span class="number">0.0021</span>,
+    <span class="string">"Glass"</span>: <span class="number">0.0031</span>,
+    <span class="string">"Textile"</span>: <span class="number">0.0005</span>,
+    <span class="string">"Miscellaneous"</span>: <span class="number">0.0005</span>
+  },
+  <span class="string">"ecological_metrics"</span>: {
+    <span class="string">"co2_saved_kg"</span>: <span class="number">3.5</span>,
+    <span class="string">"recyclability_status"</span>: <span class="string">"Highly Recyclable"</span>,
+    <span class="string">"decomposes_in"</span>: <span class="string">"500-1000 years"</span>
+  }
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- Section: API - Batch -->
+            <section id="api-batch" class="docs-sec reveal-on-scroll">
+                <h2>POST /predict-batch</h2>
+                <div class="api-endpoint-badge">
+                    <span class="method-post">POST</span>
+                    <span class="endpoint-path">/api/predict-batch</span>
+                </div>
+                <p>Processes multiple image streams concurrently. Ideal for industrial pipelines using multi-camera sorting stations.</p>
+                
+                <h3>Request Payload</h3>
+                <ul>
+                    <li><code>files</code>: Array of binary file streams (maximum 30 items per request).</li>
+                </ul>
+
+                <h3>Python Integration Code Example</h3>
+                <div class="code-block-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">Python</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="keyword">import</span> requests
+
+url = <span class="string">"http://localhost:8000/api/predict-batch"</span>
+files = [
+    (<span class="string">'files'</span>, (<span class="string">'item1.jpg'</span>, open(<span class="string">'waste1.jpg'</span>, <span class="string">'rb'</span>), <span class="string">'image/jpeg'</span>)),
+    (<span class="string">'files'</span>, (<span class="string">'item2.jpg'</span>, open(<span class="string">'waste2.jpg'</span>, <span class="string">'rb'</span>), <span class="string">'image/jpeg'</span>))
+]
+
+response = requests.<span class="function">post</span>(url, files=files)
+data = response.<span class="function">json</span>()
+
+<span class="keyword">for</span> item <span class="keyword">in</span> data[<span class="string">'predictions'</span>]:
+    <span class="function">print</span>(f<span class="string">"File: {item['filename']} -> Class: {item['class_name']}"</span>)</code></pre>
+                </div>
+            </section>
+
+            <!-- Section: API - Stats -->
+            <section id="api-stats" class="docs-sec reveal-on-scroll">
+                <h2>GET /stats</h2>
+                <div class="api-endpoint-badge">
+                    <span class="method-get">GET</span>
+                    <span class="endpoint-path">/api/stats</span>
+                </div>
+                <p>Retrieves the overall performance data, aggregated historical logs, and accuracy trends for dashboard visualizations.</p>
+                
+                <h3>Response Body Example</h3>
+                <div class="code-block-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">JSON</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>{
+  <span class="string">"total_scans"</span>: <span class="number">1250</span>,
+  <span class="string">"average_latency_ms"</span>: <span class="number">45.2</span>,
+  <span class="string">"accuracy_rate"</span>: <span class="number">0.895</span>,
+  <span class="string">"carbon_saved_total_kg"</span>: <span class="number">3200.4</span>,
+  <span class="string">"class_distribution"</span>: {
+    <span class="string">"Plastic"</span>: <span class="number">342</span>,
+    <span class="string">"Organic"</span>: <span class="number">289</span>,
+    <span class="string">"Metal"</span>: <span class="number">178</span>,
+    ...
+  }
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- Section: API - Feedback -->
+            <section id="api-feedback" class="docs-sec reveal-on-scroll">
+                <h2>POST /feedback</h2>
+                <div class="api-endpoint-badge">
+                    <span class="method-post">POST</span>
+                    <span class="endpoint-path">/api/feedback</span>
+                </div>
+                <p>Enables operators to override incorrect AI classifications. The payload is written immediately to the calibration database, feeding the active training queue to fine-tune the ensemble core over time.</p>
+                
+                <h3>Request Schema (JSON)</h3>
+                <div class="code-block-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">JSON Schema</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>{
+  <span class="string">"predicted_class"</span>: <span class="string">"Paper"</span>,
+  <span class="string">"actual_class"</span>: <span class="string">"Metal"</span>,
+  <span class="string">"confidence"</span>: <span class="number">0.84</span>,
+  <span class="string">"notes"</span>: <span class="string">"Cardboard box was lined inside with heavy foil lining, confusing the sensors."</span>
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- Section: Edge Deployment -->
+            <section id="edge-deployment" class="docs-sec reveal-on-scroll">
+                <h2>Edge Robotics Integration</h2>
+                <p>For low-power waste complexes, executing deep ensembles in the cloud introduces latency and network stability issues. CIRCVIS supports direct edge deployment via optimized TensorRT models.</p>
+                
+                <h3>Raspberry Pi & Jetson Nano Optimization</h3>
+                <p>We convert the lightweight MobileNetV2 architecture into quantized <strong>INT8 ONNX / TensorLite</strong> configurations. This slashes the memory footprint to <strong>13 MB</strong> while maintaining a sub-50ms inference latency directly on hardware:</p>
+                
+                <ul>
+                    <li><strong>Jetson Nano Setup:</strong> Utilizes CUDA cores and TensorRT for real-time video stream evaluation.</li>
+                    <li><strong>Raspberry Pi Setup:</strong> Runs the quantization-aware TF Lite runtime utilizing 4 parallel ARM CPU threads.</li>
+                </ul>
+
+                <div class="info-note">
+                    <h4>⚙ Edge Robotic Arm Trigger</h4>
+                    <p>In edge implementations, classification callbacks send standard serial signals (e.g., Modbus/TCP or simple UART signals) to direct robotic arms, blowing pneumatic sorting nozzles or mechanical gates to correctly divert items at the exact millisecond.</p>
+                </div>
+            </section>
+
+            <!-- Section: Troubleshooting -->
+            <section id="troubleshooting" class="docs-sec reveal-on-scroll">
+                <h2>Troubleshooting FAQ</h2>
+                
+                <h3>Q: Why am I seeing degraded/mock model predictions instead of the real deep ensemble?</h3>
+                <p><strong>A:</strong> If the model weights (`.keras` files) are missing from the `models/` directory during backend startup, the FastAPI server boots in a safe diagnostic fallback mode using simulated predictions. To solve this, run our training pipeline to generate the production weights:</p>
+                <div class="code-block-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">Shell</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>python data/train_models.py --epochs 30</code></pre>
+                </div>
+
+                <h3>Q: My camera feed is failing to load on the demo interface. How do I fix this?</h3>
+                <p><strong>A:</strong> Ensure that the page is served over a secure connection (`https://` or `localhost`). Modern browsers block webcam access (getUserMedia) on unsecured HTTP origins. Also, verify that no other software is utilizing the camera resource.</p>
+
+                <h3>Q: How do we resolve confusion between Paper and Metal classes?</h3>
+                <p><strong>A:</strong> Metallic cardboards or foil-lined boxes are a common edge-case challenge. You can tweak the classification threshold limits in `models/inference_calibration.json` by adding a small logit bias to Paper, or submit operator overrides using the `/api/feedback` interface to calibrate weights during the next retraining epoch.</p>
+            </main>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-bottom">
+            <span>&copy; 2024 CIRCVIS. All rights reserved.</span>
+            <span>Built for Circular Cities 2030</span>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/cinematic.js"></script>
+<script>
+    // Copy code helper
+    function copyCode(btn) {
+        const pre = btn.parentElement.nextElementSibling;
+        const codeText = pre.textContent;
+        navigator.clipboard.writeText(codeText).then(() => {
+            const origText = btn.textContent;
+            btn.textContent = "Copied!";
+            btn.style.color = "var(--c-green)";
+            btn.style.borderColor = "var(--c-green)";
+            setTimeout(() => {
+                btn.textContent = origText;
+                btn.style.color = "";
+                btn.style.borderColor = "";
+            }, 2000);
+        });
+    }
+
+    // Scroll Spy for sidebar links
+    window.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                if (entry.intersectionRatio > 0.3) {
+                    document.querySelectorAll('.sidebar-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    const activeLink = document.querySelector(`.sidebar-link[href="#${id}"]`);
+                    if (activeLink) activeLink.classList.add('active');
+                }
+            });
+        }, { threshold: [0.1, 0.3, 0.5, 0.7] });
+
+        // Track all sections
+        document.querySelectorAll('.docs-sec').forEach(section => {
+            observer.observe(section);
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — CIRCVIS AI Waste Intelligence</title>
+    <meta name="description" content="Learn how CIRCVIS uses ensemble deep learning to solve real-world waste classification challenges for circular cities.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+    <div class="nav-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">CV</span>
+            <span class="brand-name">CIRCVIS</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="demo.html" class="nav-link">Demo</a></li>
+            <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            <li><a href="about.html" class="nav-link active">About</a></li>
+            <li><a href="docs.html" class="nav-link">Docs</a></li>
+        </ul>
+        <a href="demo.html" class="nav-cta">Try Live Demo</a>
+    </div>
+</nav>
+
+<div class="page-hero" style="position: relative; overflow: hidden; padding: 180px 24px 100px; text-align: left; background: url('assets/images/abt_hero.png') center center / cover no-repeat; border-bottom: none;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(0deg, var(--c-bg) 0%, rgba(9,9,11,0) 10%), linear-gradient(90deg, rgba(9,9,11,0.95) 0%, rgba(9,9,11,0.7) 100%); z-index: 1;"></div>
+    <div class="container" style="position: relative; z-index: 2; max-width: 800px; margin: 0;">
+        <span class="page-hero-tag reveal-on-scroll" style="background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); padding: 4px 12px; border-radius: 20px; margin-bottom: 24px;">About CIRCVIS</span>
+        <h1 class="reveal-on-scroll delay-100" style="text-align: left; font-size: clamp(2.5rem,5vw,4rem); margin-bottom: 24px; line-height: 1.1;">Context-Aware Waste<br>Classification System</h1>
+        <p class="reveal-on-scroll delay-200" style="text-align: left; margin: 0; font-size: 1.2rem;">We built CIRCVIS to solve a hard, real problem — waste that doesn't get sorted costs the planet billions of tonnes of recyclable material every year.</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <div class="about-grid">
+
+            <!-- The Problem We Solve - Split Row -->
+            <div class="split-row">
+                <div class="reveal-left">
+                    <h2>The Problem We Solve</h2>
+                    <p style="color:var(--c-muted); font-size:1.1rem; margin-bottom:24px;"><strong>Rapid urbanization</strong> has intensified municipal solid waste to 2.12 billion tons annually. Standard image-classification models fail in real deployment due to conditions that labs never replicate.</p>
+                    <ul class="impact-list">
+                        <li>Only 32% of global waste is properly sorted today</li>
+                        <li>2 million tons/year sent to landfill unnecessarily</li>
+                        <li>Facilities operate at 40–60% efficiency on average</li>
+                        <li>High manual labour cost and workplace safety risk</li>
+                    </ul>
+                </div>
+                <div class="split-img-wrapper reveal-right">
+                    <img src="assets/images/abt_problem.png" class="split-img" alt="The Problem">
+                </div>
+            </div>
+
+            <!-- Challenges - Split Row (reversed) -->
+            <div class="split-row reverse">
+                <div class="reveal-right">
+                    <h2>Real-World Challenges</h2>
+                    <div class="challenges-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                        <div class="challenge-item" style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 10px; border: 1px solid var(--c-border);">
+                            <h4 style="font-size:1.1rem; margin-bottom: 8px;">Mixed Waste</h4>
+                            <p style="color:var(--c-muted); font-size:0.9rem;">Multiple materials clumped together make single-label classification unreliable.</p>
+                        </div>
+                        <div class="challenge-item" style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 10px; border: 1px solid var(--c-border);">
+                            <h4 style="font-size:1.1rem; margin-bottom: 8px;">Partial Visibility</h4>
+                            <p style="color:var(--c-muted); font-size:0.9rem;">Overlapping and occluded items dramatically reduce single-model confidence.</p>
+                        </div>
+                        <div class="challenge-item" style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 10px; border: 1px solid var(--c-border);">
+                            <h4 style="font-size:1.1rem; margin-bottom: 8px;">Inconsistent Lighting</h4>
+                            <p style="color:var(--c-muted); font-size:0.9rem;">Variable illumination in landfills and MRF environments throws off colour-based features.</p>
+                        </div>
+                        <div class="challenge-item" style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 10px; border: 1px solid var(--c-border);">
+                            <h4 style="font-size:1.1rem; margin-bottom: 8px;">Material Degradation</h4>
+                            <p style="color:var(--c-muted); font-size:0.9rem;">Faded colours and worn textures from landfill conditions fool lab-trained models.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="split-img-wrapper reveal-left">
+                    <img src="assets/images/abt_challenges.png" class="split-img" alt="Real-World Challenges">
+                </div>
+            </div>
+
+            <div class="split-rows" style="margin-top: 60px;">
+                <div class="split-row">
+                    <div class="reveal-left">
+                        <h2>Our Solution</h2>
+                        <p style="font-size:1.1rem; color:var(--c-muted); margin-bottom:24px;"><strong>CIRCVIS</strong> uses an ensemble of three production deep-learning architectures trained exclusively on real-world datasets — not curated lab images.</p>
+                        <div class="feature" style="margin-bottom:20px;">
+                            <h4 style="font-size:1.4rem;">Ensemble Deep Learning</h4>
+                            <ul style="color:var(--c-muted);">
+                                <li>ResNet50 — 88% accuracy, high precision server</li>
+                                <li>MobileNetV2 — 84% accuracy, edge-ready at 13 MB</li>
+                                <li>EfficientNetB0 — 87% accuracy, balanced cloud</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="split-img-wrapper reveal-right">
+                        <img src="assets/images/abt_ensemble.png" class="split-img" alt="Ensemble Deep Learning">
+                    </div>
+                </div>
+
+                <div class="split-row reverse">
+                    <div class="reveal-right">
+                        <div class="feature" style="margin-bottom:20px;">
+                            <h4 style="font-size:1.4rem;">Real-World Datasets</h4>
+                            <ul style="color:var(--c-muted);">
+                                <li>RealWaste — 657 MB of actual landfill imagery</li>
+                                <li>TACO — 2M+ in-the-wild litter images</li>
+                                <li>Combined — 2.5M+ images across 7 classes</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="split-img-wrapper reveal-left">
+                        <img src="assets/images/abt_datasets.png" class="split-img" alt="Datasets">
+                    </div>
+                </div>
+
+                <div class="split-row">
+                    <div class="reveal-left">
+                        <div class="feature" style="margin-bottom:20px;">
+                            <h4 style="font-size:1.4rem;">Context-Aware Features</h4>
+                            <ul style="color:var(--c-muted);">
+                                <li>Data augmentation for degraded images</li>
+                                <li>Attention mechanisms for occlusion handling</li>
+                                <li>Scene context analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="split-img-wrapper reveal-right">
+                        <img src="assets/images/abt_context.png" class="split-img" alt="Context Features">
+                    </div>
+                </div>
+            </div>
+
+            <div class="split-row reverse" style="margin-top: 60px;">
+                <div class="reveal-right">
+                    <h2>Technology Stack</h2>
+                    <div class="tech-stack" style="display: flex; flex-direction: column; gap: 16px;">
+                        <div class="tech-category">
+                            <h4 style="font-size: 1.2rem;">Backend</h4>
+                            <p style="color:var(--c-muted);">FastAPI · TensorFlow/Keras · Python 3.10+</p>
+                        </div>
+                        <div class="tech-category">
+                            <h4 style="font-size: 1.2rem;">Frontend</h4>
+                            <p style="color:var(--c-muted);">HTML5 · Vanilla CSS · Vanilla JavaScript</p>
+                        </div>
+                        <div class="tech-category">
+                            <h4 style="font-size: 1.2rem;">ML / Data</h4>
+                            <p style="color:var(--c-muted);">Scikit-learn · OpenCV · NumPy · Pandas</p>
+                        </div>
+                        <div class="tech-category">
+                            <h4 style="font-size: 1.2rem;">Deployment</h4>
+                            <p style="color:var(--c-muted);">Docker · Docker Compose · Kubernetes-ready</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="split-img-wrapper reveal-left">
+                    <img src="assets/images/abt_tech.png" class="split-img" alt="Technology Stack">
+                </div>
+            </div>
+
+            <div class="split-row" style="margin-top: 60px;">
+                <div class="reveal-left">
+                    <h2>The 7 Waste Categories</h2>
+                    <div class="classes-detailed" style="display: grid; gap: 20px;">
+                        <div class="class-detail" style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 8px;">
+                            <h4 style="font-size:1.2rem;">1. Plastic</h4>
+                            <p style="color:var(--c-muted); font-size:0.95rem;"><strong>Includes:</strong> PET, HDPE, PP, PVC bottles, bags</p>
+                            <p style="color:var(--c-green); font-size:0.95rem;"><strong>Recyclability:</strong> 95%</p>
+                        </div>
+                        <div class="class-detail" style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 8px;">
+                            <h4 style="font-size:1.2rem;">2. Organic</h4>
+                            <p style="color:var(--c-muted); font-size:0.95rem;"><strong>Includes:</strong> Food waste, garden waste, plant matter</p>
+                            <p style="color:var(--c-green); font-size:0.95rem;"><strong>Recyclability:</strong> 100% compostable</p>
+                        </div>
+                        <div class="class-detail" style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 8px;">
+                            <h4 style="font-size:1.2rem;">3. Metal</h4>
+                            <p style="color:var(--c-muted); font-size:0.95rem;"><strong>Includes:</strong> Aluminium, steel, copper, cans</p>
+                            <p style="color:var(--c-green); font-size:0.95rem;"><strong>Recyclability:</strong> 100%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="split-img-wrapper reveal-right">
+                    <img src="assets/images/abt_waste_1.png" class="split-img img-filter-2" alt="Waste Categories">
+                </div>
+            </div>
+
+            <div class="split-row reverse">
+                <div class="reveal-right">
+                    <div class="classes-detailed" style="display: grid; gap: 20px;">
+                        <div class="class-detail" style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 8px;">
+                            <h4 style="font-size:1.2rem;">4. Paper / Cardboard</h4>
+                            <p style="color:var(--c-muted); font-size:0.95rem;"><strong>Includes:</strong> Newspapers, boxes, cardboard</p>
+                            <p style="color:var(--c-green); font-size:0.95rem;"><strong>Recyclability:</strong> 98%</p>
+                        </div>
+                        <div class="class-detail" style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 8px;">
+                            <h4 style="font-size:1.2rem;">5. Glass</h4>
+                            <p style="color:var(--c-muted); font-size:0.95rem;"><strong>Includes:</strong> Clear, brown, green bottles</p>
+                            <p style="color:var(--c-green); font-size:0.95rem;"><strong>Recyclability:</strong> 100%</p>
+                        </div>
+                        <div class="class-detail" style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 8px;">
+                            <h4 style="font-size:1.2rem;">6. Textile</h4>
+                            <p style="color:var(--c-muted); font-size:0.95rem;"><strong>Includes:</strong> Cotton, polyester, wool</p>
+                            <p style="color:var(--c-green); font-size:0.95rem;"><strong>Recyclability:</strong> 60%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="split-img-wrapper reveal-left">
+                    <img src="assets/images/abt_waste_2.png" class="split-img img-filter-1" alt="More Categories">
+                </div>
+            </div>
+
+            <div class="split-row" style="margin-top: 60px;">
+                <div class="reveal-left">
+                    <h2>Deployment Scenarios</h2>
+                    <div class="deployment-scenarios" style="display: grid; gap: 24px;">
+                        <div class="scenario">
+                            <h4 style="font-size:1.3rem;">Municipal Recycling Facilities (MRF)</h4>
+                            <p style="color:var(--c-muted);">Deploy ResNet50 ensemble on GPU servers for real-time conveyor belt sorting.</p>
+                            <p style="color:var(--c-green); font-weight:600;">Impact: 40% faster sorting, 95%+ accuracy</p>
+                        </div>
+                        <div class="scenario">
+                            <h4 style="font-size:1.3rem;">Robotic Waste Systems</h4>
+                            <p style="color:var(--c-muted);">MobileNetV2 on edge devices (Jetson Nano) for picking and sorting.</p>
+                            <p style="color:var(--c-green); font-weight:600;">Impact: 45ms inference, 13 MB footprint</p>
+                        </div>
+                        <div class="scenario">
+                            <h4 style="font-size:1.3rem;">Smart City IoT</h4>
+                            <p style="color:var(--c-muted);">Edge deployment on smart bins with real-time composition tracking.</p>
+                            <p style="color:var(--c-green); font-weight:600;">Impact: Data-driven policy, optimized routing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="split-img-wrapper reveal-right">
+                    <img src="assets/images/abt_deployment.png" class="split-img img-filter-3" alt="Deployment Scenarios">
+                </div>
+            </div>
+
+            <div class="split-row reverse" style="margin-top: 60px;">
+                <div class="reveal-right">
+                    <h2>Product Roadmap</h2>
+                    <div class="roadmap" style="display: grid; gap: 24px;">
+                        <div class="milestone">
+                            <h4 style="font-size:1.3rem;">v1.0 — Foundation</h4>
+                            <p style="color:var(--c-muted);">Ensemble models, 7-class pipeline, Web demo, REST API</p>
+                        </div>
+                        <div class="milestone">
+                            <h4 style="font-size:1.3rem;">v1.1 — Edge Ready</h4>
+                            <p style="color:var(--c-muted);">Model quantization (INT8), TF Lite, Jetson Nano guide</p>
+                        </div>
+                        <div class="milestone">
+                            <h4 style="font-size:1.3rem;">v2.0 — Enterprise</h4>
+                            <p style="color:var(--c-muted);">Real-time video, advanced analytics, custom pipelines</p>
+                        </div>
+                        <div class="milestone">
+                            <h4 style="font-size:1.3rem;">v2.5 — Multi-Modal</h4>
+                            <p style="color:var(--c-muted);">Thermal imaging, 3D point cloud, contamination detection</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="split-img-wrapper reveal-left">
+                    <img src="assets/images/abt_roadmap.png" class="split-img img-filter-1" alt="Product Roadmap">
+                </div>
+            </div>
+
+
+
+            <div class="split-row reverse" style="margin-top: 60px;">
+                <div class="reveal-right">
+                    <h2>View Project Documentation</h2>
+                    <p style="color:var(--c-muted); font-size:1.1rem; line-height:1.6; margin-bottom:24px;">Dive into our detailed system architecture, deep learning models, developer APIs, and edge deployment guides. Explore all technical aspects of CIRCVIS.</p>
+                    <div class="contact-options" style="display:flex; flex-direction:column; gap:16px;">
+                        <a href="docs.html" class="btn-solid" style="text-align:center;">View Documentation</a>
+                        <a href="#" class="btn-ghost-dark" style="text-align:center;">GitHub Repository</a>
+                    </div>
+                </div>
+                <div class="split-img-wrapper reveal-left">
+                    <img src="assets/images/abt_contact.png" class="split-img img-filter-2" alt="View Documentation">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-bottom">
+            <span>&copy; 2024 CIRCVIS. All rights reserved.</span>
+            <span>Built for Circular Cities 2030</span>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/cinematic.js"></script>
+</body>
+</html>

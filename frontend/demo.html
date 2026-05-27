@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Demo — CIRCVIS AI Waste Classification</title>
+    <meta name="description" content="Try CIRCVIS live. Upload images, use your camera, or analyze video with real-time AI waste classification.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .demo-layout { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+        .demo-card { border-radius:12px; border:1px solid var(--c-border); background:var(--c-surface); padding:28px; }
+        .demo-card h3 { font-size:1rem; font-weight:700; margin-bottom:20px; }
+        .upload-zone { padding:40px 24px; border:2px dashed rgba(34,197,94,.3); border-radius:10px; text-align:center; cursor:pointer; transition:all .25s; }
+        .upload-zone:hover { border-color:var(--c-green); background:rgba(34,197,94,.04); }
+        .upload-zone h3 { font-size:1rem; margin-bottom:8px; }
+        .upload-zone p { font-size:.85rem; color:var(--c-dim); margin-bottom:16px; }
+        .upload-preview { display:none; text-align:center; }
+        .upload-preview img { max-width:100%; border-radius:8px; margin-bottom:12px; }
+        .status-text { font-size:.82rem; color:var(--c-green); font-weight:600; }
+        .empty-state { text-align:center; padding:32px 16px; color:var(--c-dim); }
+        .empty-state p { font-size:.9rem; }
+        .processing-status { font-size:.82rem; }
+        .results-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+        .results-header h3 { font-size:1rem; font-weight:700; margin:0; }
+        .main-prediction { text-align:center; padding:20px; border-radius:10px; background:rgba(34,197,94,.06); margin-bottom:20px; }
+        .main-prediction h2 { font-size:1.4rem; font-weight:800; margin:8px 0; }
+        .confidence-bars { display:flex; flex-direction:column; gap:8px; }
+        .upload-info { margin-top:16px; padding:16px; border-radius:8px; border:1px solid var(--c-border); }
+        .upload-info h4 { font-size:.85rem; font-weight:700; margin-bottom:10px; }
+        .upload-info li { font-size:.82rem; color:var(--c-dim); padding:3px 0; }
+        .mode-icon { font-size:1.1rem; }
+        .camera-layout { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+        .camera-view { position:relative; border-radius:10px; overflow:hidden; background:#000; aspect-ratio:4/3; margin-bottom:16px; }
+        .camera-view video { width:100%; height:100%; object-fit:cover; }
+        .camera-placeholder { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--c-dim); gap:8px; }
+        .camera-placeholder p { font-size:.85rem; }
+        .video-layout { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+        .video-view { border-radius:10px; overflow:hidden; background:#000; aspect-ratio:16/9; margin-bottom:16px; }
+        .video-view video { width:100%; height:100%; object-fit:contain; }
+        .video-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; color:var(--c-dim); gap:8px; padding:24px; text-align:center; }
+        .video-placeholder p { font-size:.85rem; }
+        .demo-features-section { padding:64px 0; background:var(--c-surface); border-top:1px solid var(--c-border); margin-top:0; }
+        .demo-features-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+        .demo-feature-card { padding:24px; border-radius:10px; border:1px solid var(--c-border); }
+        .demo-feature-card h4 { font-size:.95rem; font-weight:700; margin-bottom:8px; }
+        .demo-feature-card p { font-size:.85rem; color:var(--c-dim); margin:0; }
+        .model-status { padding:10px 16px; border-radius:8px; background:rgba(255,255,255,.04); border:1px solid var(--c-border); font-size:.85rem; color:var(--c-dim); margin-bottom:20px; text-align:center; font-weight:500; }
+        .demo-top { display:flex; justify-content:space-between; align-items:flex-start; gap:32px; margin-bottom:32px; flex-wrap:wrap; }
+        .demo-top-text h1 { font-size:clamp(1.6rem,3vw,2.25rem); font-weight:800; letter-spacing:-0.035em; margin-bottom:10px; }
+        .demo-top-text p { color:var(--c-muted); font-size:.95rem; }
+        .demo-top-stats { display:flex; gap:20px; flex-shrink:0; }
+        .dstat { text-align:center; padding:16px 20px; border-radius:10px; border:1px solid var(--c-border); background:var(--c-surface); }
+        .dstat-num { display:block; font-size:1.4rem; font-weight:800; color:var(--c-green); }
+        .dstat-lbl { font-size:.72rem; color:var(--c-dim); font-weight:600; text-transform:uppercase; letter-spacing:.05em; }
+        @media(max-width:768px) { .demo-layout,.camera-layout,.video-layout { grid-template-columns:1fr; } .demo-features-grid { grid-template-columns:repeat(2,1fr); } .demo-top { flex-direction:column; } }
+    </style>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+    <div class="nav-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">CV</span>
+            <span class="brand-name">CIRCVIS</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="demo.html" class="nav-link active">Demo</a></li>
+            <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="docs.html" class="nav-link">Docs</a></li>
+        </ul>
+        <a href="dashboard.html" class="nav-cta">View Dashboard</a>
+    </div>
+</nav>
+
+<!-- Cinematic Hero -->
+<div style="position:relative; overflow:hidden; padding:160px 24px 80px; background:url('assets/images/demo_hero.png') center center/cover no-repeat;">
+    <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(9,9,11,0.95) 0%, rgba(9,9,11,0.6) 60%, rgba(9,9,11,0.3) 100%); z-index:1;"></div>
+    <div class="container" style="position:relative; z-index:2; max-width:700px; margin:0;">
+        <span class="section-tag reveal-on-scroll" style="display:inline-block; margin-bottom:20px;">Interactive Demo</span>
+        <h1 class="reveal-on-scroll delay-100" style="font-size:clamp(2.2rem,5vw,3.8rem); font-weight:800; letter-spacing:-0.03em; line-height:1.1; margin-bottom:20px;">Try CIRCVIS<br>Live in Your Browser</h1>
+        <p class="reveal-on-scroll delay-200" style="font-size:1.1rem; color:var(--c-muted); line-height:1.7; max-width:540px;">Upload an image, use your live camera, or analyze a video file. See real-time AI classification results across 7 waste categories.</p>
+    </div>
+</div>
+<section class="section" style="padding-top:60px;">
+    <div class="container">
+        <div class="demo-top">
+            <div class="demo-top-text reveal-on-scroll">
+                <span class="section-tag">Interactive Demo</span>
+                <h2 style="font-size:clamp(1.4rem,3vw,2rem); margin-top:8px;">AI-Powered Waste Classification</h2>
+                <p>Upload an image, use your live camera, or analyze a video file. See real-time AI classification results across 7 waste categories.</p>
+            </div>
+            <div class="demo-top-stats reveal-on-scroll delay-100">
+                <div class="dstat">
+                    <span class="dstat-num" id="demoAccuracy">85%</span>
+                    <span class="dstat-lbl">Accuracy</span>
+                </div>
+                <div class="dstat">
+                    <span class="dstat-num" id="demoModelName">MobileNetV2</span>
+                    <span class="dstat-lbl">Model</span>
+                </div>
+                <div class="dstat">
+                    <span class="dstat-num">7</span>
+                    <span class="dstat-lbl">Categories</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="modelStatusBanner" class="model-status">Checking model connection...</div>
+
+        <div class="mode-selector">
+            <button class="mode-btn active" data-mode="upload">
+                <span class="mode-icon">&#x1F4F7;</span>
+                <span class="mode-text">Upload Image</span>
+            </button>
+            <button class="mode-btn" data-mode="camera">
+                <span class="mode-icon">&#x1F4F9;</span>
+                <span class="mode-text">Live Camera</span>
+            </button>
+            <button class="mode-btn" data-mode="video">
+                <span class="mode-icon">&#x1F3AC;</span>
+                <span class="mode-text">Video Analysis</span>
+            </button>
+        </div>
+
+        <!-- Upload Mode -->
+        <div class="demo-mode active" id="upload-mode">
+            <div class="demo-layout">
+                <div>
+                    <div class="demo-card">
+                        <div class="upload-zone" id="uploadZone">
+                            <div class="upload-icon" style="font-size:2rem;margin-bottom:12px;">&#x1F4C1;</div>
+                            <h3>Drop your waste image here</h3>
+                            <p>Drag &amp; drop or click to browse</p>
+                            <input type="file" id="fileInput" accept="image/*" hidden>
+                            <button class="btn-solid" id="browseBtn" style="font-size:.875rem;padding:10px 22px;">Choose File</button>
+                        </div>
+                        <div class="upload-preview" id="uploadPreview">
+                            <img id="previewImg" alt="Preview" style="max-width:100%;border-radius:8px;margin-bottom:12px;">
+                            <button class="btn-ghost-dark" id="changeBtn" style="font-size:.82rem;padding:8px 16px;">Change Image</button>
+                        </div>
+                    </div>
+                    <div class="upload-info">
+                        <h4>Supported Formats</h4>
+                        <ul>
+                            <li>JPEG, PNG, WebP images</li>
+                            <li>Up to 10MB file size</li>
+                            <li>Real-time processing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="demo-card">
+                    <div class="results-header">
+                        <h3>Classification Results</h3>
+                        <div class="processing-status" id="processingStatus">
+                            <span class="status-text">Ready to analyze</span>
+                        </div>
+                    </div>
+                    <div id="resultsContent">
+                        <div class="empty-state">
+                            <p>Upload an image to see classification results</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camera Mode -->
+        <div class="demo-mode" id="camera-mode">
+            <div class="camera-layout">
+                <div class="demo-card">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                        <h3 style="margin:0;font-size:1rem;font-weight:700;">Live Camera Feed</h3>
+                        <button class="btn-solid" id="startCamera" style="font-size:.82rem;padding:8px 18px;">Start Camera</button>
+                    </div>
+                    <div class="camera-view">
+                        <video id="cameraVideo" autoplay playsinline></video>
+                        <canvas id="cameraCanvas" style="display:none;"></canvas>
+                        <div class="camera-placeholder" id="cameraPlaceholder" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('assets/images/demo_camera_placeholder.png') center/cover;">
+                            <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--c-green); display: grid; place-items: center; margin-bottom: 12px; font-size: 1.2rem; box-shadow: 0 0 15px rgba(34,197,94,0.5);">&#x1F4F9;</div>
+                            <p style="color: #fff; font-weight: 600; font-size: .95rem;">Click "Start Camera" to begin scanning</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-card">
+                    <h3>Live Results</h3>
+                    <div id="liveResults">
+                        <div class="empty-state"><p>Start camera for real-time analysis</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Mode -->
+        <div class="demo-mode" id="video-mode">
+            <div class="video-layout">
+                <div class="demo-card">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                        <h3 style="margin:0;font-size:1rem;font-weight:700;">Video Analysis</h3>
+                        <input type="file" id="videoInput" accept="video/*" hidden>
+                        <button class="btn-solid" id="selectVideo" style="font-size:.82rem;padding:8px 18px;">Select Video</button>
+                    </div>
+                    <div class="video-view">
+                        <video id="analysisVideo" controls style="width:100%;height:100%;"></video>
+                        <div class="video-placeholder" id="videoPlaceholder" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('assets/images/demo_video_placeholder.png') center/cover;">
+                            <div style="width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--c-green); display: grid; place-items: center; margin-bottom: 12px; font-size: 1.2rem; color: var(--c-green);">&#x1F3AC;</div>
+                            <p style="color: #fff; font-weight: 600; font-size: .95rem;">Select a video file to analyze conveyor flow</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-card">
+                    <h3>Frame Analysis</h3>
+                    <div id="videoResults">
+                        <div class="empty-state"><p>Load a video to see frame-by-frame analysis</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works - Split Row Section -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-tag">How It Works</span>
+            <h2 class="section-title">From Image to Insight in 3 Steps</h2>
+        </div>
+        <div class="split-rows">
+            <div class="split-row">
+                <div class="reveal-left">
+                    <div style="display:inline-flex; align-items:center; justify-content:center; width:56px; height:56px; border-radius:50%; background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.4); font-size:1.5rem; font-weight:800; color:var(--c-green); margin-bottom:20px;">1</div>
+                    <h3 style="font-size:1.6rem; margin-bottom:12px;">Upload or Capture</h3>
+                    <p style="font-size:1.05rem; color:var(--c-muted); line-height:1.7;">Drop any waste image or use your live camera. CIRCVIS supports JPEG, PNG, WebP up to 10MB and real-time video streams from any device camera.</p>
+                </div>
+                <div class="split-img-wrapper reveal-right">
+                    <img src="assets/images/demo_upload.png" class="split-img img-filter-2" alt="Upload Step">
+                </div>
+            </div>
+
+            <div class="split-row reverse">
+                <div class="reveal-right">
+                    <div style="display:inline-flex; align-items:center; justify-content:center; width:56px; height:56px; border-radius:50%; background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.4); font-size:1.5rem; font-weight:800; color:var(--c-green); margin-bottom:20px;">2</div>
+                    <h3 style="font-size:1.6rem; margin-bottom:12px;">Ensemble AI Analysis</h3>
+                    <p style="font-size:1.05rem; color:var(--c-muted); line-height:1.7;">Three deep learning models (ResNet50, MobileNetV2, EfficientNetB0) simultaneously analyse your image. A soft-voting ensemble combines their predictions for 89% accuracy.</p>
+                </div>
+                <div class="split-img-wrapper reveal-left">
+                    <img src="assets/images/demo_analysis.png" class="split-img img-filter-1" alt="AI Analysis Step">
+                </div>
+            </div>
+
+            <div class="split-row" style="margin-bottom:0;">
+                <div class="reveal-left">
+                    <div style="display:inline-flex; align-items:center; justify-content:center; width:56px; height:56px; border-radius:50%; background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.4); font-size:1.5rem; font-weight:800; color:var(--c-green); margin-bottom:20px;">3</div>
+                    <h3 style="font-size:1.6rem; margin-bottom:12px;">Actionable Results</h3>
+                    <p style="font-size:1.05rem; color:var(--c-muted); line-height:1.7;">Get per-class confidence scores, CO₂ impact estimates, material economic value, and a full recycling recommendation — all in under 200ms.</p>
+                </div>
+                <div class="split-img-wrapper reveal-right">
+                    <img src="assets/images/demo_results.png" class="split-img img-filter-3" alt="Results Step">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="demo-features-section">
+    <div class="container">
+        <div class="section-head" style="margin-bottom:40px;">
+            <span class="section-tag">Capabilities</span>
+            <h2 class="section-title">Advanced AI Under the Hood</h2>
+        </div>
+        <div class="split-rows">
+            <div class="split-row">
+                <div class="reveal-left">
+                    <h4 style="font-size:1.6rem; margin-bottom:12px;">MobileNetV2 Fine-tuned</h4>
+                    <p style="font-size:1.1rem; color:var(--c-muted);">ImageNet pretrained, adapted for 7 real-world waste categories with 84% accuracy.</p>
+                </div>
+                <div class="split-img-wrapper reveal-right">
+                    <img src="assets/images/demo_mobilenet.png" class="split-img img-filter-2" alt="MobileNetV2">
+                </div>
+            </div>
+            
+            <div class="split-row reverse">
+                <div class="reveal-right">
+                    <h4 style="font-size:1.6rem; margin-bottom:12px;">Real-Time Processing</h4>
+                    <p style="font-size:1.1rem; color:var(--c-muted);">45ms inference time — fast enough for live conveyor belts and field sensors.</p>
+                </div>
+                <div class="split-img-wrapper reveal-left">
+                    <img src="assets/images/demo_realtime.png" class="split-img img-filter-3" alt="Real-Time Processing">
+                </div>
+            </div>
+
+            <div class="split-row">
+                <div class="reveal-left">
+                    <h4 style="font-size:1.6rem; margin-bottom:12px;">Context Awareness</h4>
+                    <p style="font-size:1.1rem; color:var(--c-muted);">Handles degraded images, partial occlusion, and inconsistent lighting conditions.</p>
+                </div>
+                <div class="split-img-wrapper reveal-right">
+                    <img src="assets/images/demo_context.png" class="split-img img-filter-1" alt="Context Awareness">
+                </div>
+            </div>
+
+            <div class="split-row reverse" style="margin-bottom:0;">
+                <div class="reveal-right">
+                    <h4 style="font-size:1.6rem; margin-bottom:12px;">Detailed Analytics</h4>
+                    <p style="font-size:1.1rem; color:var(--c-muted);">Per-class confidence scores, CO₂ impact estimates and material value calculations.</p>
+                </div>
+                <div class="split-img-wrapper reveal-left">
+                    <img src="assets/images/demo_analytics.png" class="split-img" alt="Detailed Analytics">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-bottom">
+            <span>&copy; 2024 CIRCVIS. All rights reserved.</span>
+            <span>Built for Circular Cities 2030</span>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/demo.js"></script>
+<script src="assets/js/cinematic.js"></script>
+</body>
+</html>

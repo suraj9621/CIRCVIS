@@ -1,0 +1,32 @@
+# CIRCVIS: Context-Aware Waste Classification Backend
+
+# Web Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# Machine Learning
+tensorflow-cpu==2.21.0
+scikit-learn==1.3.2
+numpy==1.26.4
+opencv-python==4.11.0.86
+
+# Data Processing
+pandas==2.1.3
+pillow==10.1.0
+
+# Utilities
+python-dotenv==1.0.0
+requests==2.31.0
+
+# Development
+pytest==7.4.3
+black==23.12.1
+flake8==6.1.0
+mypy==1.7.1
+
+# Optional: For edge deployment
+# tensorflow-lite (for quantized models)
+# onnx==1.15.0 (for model export)

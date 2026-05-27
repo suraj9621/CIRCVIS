@@ -1,0 +1,28 @@
+{
+  "logit_bias": {
+    "Plastic": -0.5,
+    "Organic": -0.25,
+    "Metal": 0.25,
+    "Paper_Cardboard": 0.25,
+    "Glass": 0.1,
+    "Textile": 0.05,
+    "Miscellaneous": 0.6
+  },
+  "misc_override_margin": 0.30,
+  "misc_override_min_alt": 0.15,
+  "metallic_threshold": 0.45,
+  "metallic_metal_boost": 2.0,
+  "metallic_misc_penalty": 2.0,
+  "metallic_organic_penalty": 1.0,
+  "paper_threshold": 0.22,
+  "paper_boost": 2.2,
+  "paper_plastic_penalty": 1.4,
+  "plastic_glossy_threshold": 0.25,
+  "plastic_penalty_when_paper": 1.1,
+  "glass_plastic_threshold": 0.25,
+  "glass_plastic_penalty": 4.0,
+  "glass_plastic_boost": 0.8,
+  "misc_plastic_confusion_penalty": 2.0,
+  "misc_texture_threshold": 0.30,
+  "misc_roughness_boost": 2.5
+}
