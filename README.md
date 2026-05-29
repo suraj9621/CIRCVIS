@@ -1,4 +1,4 @@
-CIRCVIS
+CIRCVIS:
 Context-Aware Waste Classification for Circular Cities
 
 CIRCVIS is an AI-powered smart waste classification system developed to improve automated waste segregation for modern smart cities. The project uses Deep Learning and Computer Vision techniques to identify and classify waste materials such as Plastic, Organic, Metal, Glass, Cardboard, and Mixed Trash.
