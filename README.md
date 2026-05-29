@@ -108,7 +108,7 @@ Classification results are mapped to recycling insights
 ⚡ Installation
 Clone Repository
 
-git clone https://github.com/your-username/CIRCVIS.git
+git clone https://github.com/suraj9621/CIRCVIS.git
 
 Move to Project Directory
 
