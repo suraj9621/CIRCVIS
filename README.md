@@ -1,136 +1,207 @@
-CIRCVIS:
+# ♻️ CIRCVIS - Context-Aware Waste Classification
 
-Context-Aware Waste Classification for Circular Cities
+CIRCVIS is an AI-powered waste classification system designed to identify and categorize waste materials using deep learning and computer vision. The project aims to support smart waste management, recycling awareness, and sustainable environmental practices through automated image-based classification.
 
-CIRCVIS is an AI-powered smart waste classification system developed to improve automated waste segregation for modern smart cities. The project uses Deep Learning and Computer Vision techniques to identify and classify waste materials such as Plastic, Organic, Metal, Glass, Cardboard, and Mixed Trash.
+---
 
-The primary goal of CIRCVIS is to support sustainable waste management and circular economy initiatives by enabling intelligent waste sorting in real-world urban environments.
+## 🚀 Features
 
-Unlike traditional waste classification systems that work only in controlled laboratory conditions, CIRCVIS is designed to handle:
+* 🧠 AI-powered waste classification
+* 📷 Image upload and prediction system
+* 📊 Interactive dashboard interface
+* ⚡ FastAPI backend integration
+* 🎨 Responsive frontend design
+* 📂 Automated dataset organization
+* 📈 Prediction logging and analytics
+* 🐳 Docker support for deployment
 
-Variable lighting conditions
-Mixed waste streams
-Partial object visibility
-Physically degraded waste materials
-Real-world urban waste environments
+---
 
-The system integrates multiple deep learning architectures including Custom CNN, ResNet-50, MobileNetV2, and EfficientNet-B3 for comparative evaluation and deployment optimisation.
+## 🛠️ Technologies Used
 
-🚀 Key Features
-Context-Aware Waste Classification
-Multi-Architecture Deep Learning Pipeline
-Real-Time Waste Categorisation
-Smart Data Augmentation
-Confidence Score Prediction
-GPU Accelerated Model Training
-Cloud and Edge Deployment Support
-Sustainability Impact Analysis
-🧠 Deep Learning Models Used
-Architecture	Purpose
-Custom CNN	Lightweight baseline model
-ResNet-50	High-accuracy residual learning
-MobileNetV2	Edge and IoT deployment
-EfficientNet-B3	Best accuracy-efficiency tradeoff
-📂 Dataset Information
+### Backend
 
-The project uses a combined dataset created from:
+* Python
+* FastAPI
+* TensorFlow / Keras
+* Pydantic
 
-TrashNet Dataset
-Kaggle Waste Classification Dataset
-Waste Categories
-Plastic
-Organic
-Metal
-Glass
-Cardboard
-Mixed Trash
-Dataset Size
+### Frontend
 
-Approximately 25,000 processed images after cleaning and augmentation.
+* HTML5
+* CSS3
+* JavaScript
 
-🔍 Data Preprocessing
+### Tools & Utilities
 
-The preprocessing pipeline includes:
+* Docker
+* Git & GitHub
+* SQLite
+* Batch Scripts
 
-Image Resizing (224×224)
-Pixel Normalisation
-Data Augmentation
-Label Encoding
-Stratified Dataset Splitting
-Augmentation Techniques
-Random Rotation
-Horizontal and Vertical Flip
-Brightness Adjustment
-Contrast Variation
-Zoom and Crop
-Noise Injection
-🧪 Technologies Used
-Python
-TensorFlow / Keras
-OpenCV
-NumPy
-Pandas
-Matplotlib
-Seaborn
-Google Colab
-Git & GitHub
-⚙️ Hardware Requirements
-Component	Specification
-CPU	Minimum 4-Core Processor
-RAM	Minimum 8 GB
-GPU	NVIDIA GPU with CUDA Support
-Storage	Minimum 20 GB Free Space
-📈 Model Performance
-Model	Accuracy
-Custom CNN	83.4%
-ResNet-50	91.2%
-MobileNetV2	88.7%
-EfficientNet-B3	93.6%
+---
 
-EfficientNet-B3 achieved the best overall performance and was selected as the primary deployment model.
+## 📁 Project Structure
 
-📊 Evaluation Metrics
+```bash
+CIRCVIS/
+│
+├── backend/                 # Backend API and model services
+├── frontend/                # Frontend webpages and assets
+├── data/                    # Dataset and prediction logs
+├── models/                  # Trained AI models
+├── image/                   # Images and visual assets
+├── venv/                    # Virtual environment
+│
+├── run.bat                  # Run project script
+├── start.bat                # Startup automation
+├── requirements.txt         # Python dependencies
+├── Dockerfile               # Docker configuration
+├── docker-compose.yml       # Multi-container setup
+│
+└── README.md                # Project documentation
+```
 
-The following metrics were used for model evaluation:
+---
 
-Accuracy
-Precision
-Recall
-F1-Score
-Confusion Matrix
-🏗️ System Workflow
-Waste image is captured
-Image preprocessing is applied
-Deep learning model extracts visual features
-Waste category is predicted
-Prediction confidence is generated
-Classification results are mapped to recycling insights
-⚡ Installation
-Clone Repository
+## ⚙️ Installation
 
+### 1️⃣ Clone Repository
+
+```bash
 git clone https://github.com/suraj9621/CIRCVIS.git
-
-Move to Project Directory
-
 cd CIRCVIS
+```
 
-Install Dependencies
+---
 
+### 2️⃣ Create Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+---
+
+### 3️⃣ Activate Virtual Environment
+
+#### Windows
+
+```bash
+venv\Scripts\activate
+```
+
+---
+
+### 4️⃣ Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-▶️ Run Project
-Run Python Application
+---
 
-python app.py
+## ▶️ Running the Project
 
-Run Jupyter Notebook
+### Using Batch File
 
-jupyter notebook
+```bash
+run.bat
+```
 
-🔮 Future Enhancements
-Mobile Application Integration
-IoT Smart Bin Deployment
-Cloud-Based API Services
-Drone Waste Monitoring
-Real-Time Sustainability Dashboard
-Advanced Waste Detection Models
+or
+
+```bash
+start.bat
+```
+
+---
+
+## 🌐 Access Application
+
+After the server starts successfully:
+
+```bash
+API Base:   http://localhost:8001
+Landing:    http://localhost:8001/
+Dashboard:  http://localhost:8001/dashboard.html
+Demo:       http://localhost:8001/demo.html
+```
+
+---
+
+## 🧠 How It Works
+
+1. User uploads a waste image
+2. Backend processes the image
+3. AI model predicts waste category
+4. Result is displayed on dashboard
+
+---
+
+## 📊 Supported Waste Categories
+
+* Paper/Cardboard
+* Plastic
+* Metal
+* Glass
+* Organic Waste
+* Other Recyclables
+
+---
+
+## 🐳 Docker Support
+
+### Build Docker Image
+
+```bash
+docker build -t circvis .
+```
+
+### Run Container
+
+```bash
+docker run -p 8001:8001 circvis
+```
+
+---
+
+## 📌 Future Improvements
+
+* Mobile application support
+* Real-time camera detection
+* Cloud deployment
+* Advanced analytics dashboard
+* Multi-language support
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Push to your branch
+5. Open a Pull Request
+
+---
+
+## 📜 License
+
+This project is developed for educational and research purposes.
+
+---
+
+## 👨‍💻 Author
+
+**Suraj Kumar**
+
+* GitHub: https://github.com/suraj9621
+
+---
+
+## ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
